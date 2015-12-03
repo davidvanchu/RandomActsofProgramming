@@ -9,3 +9,5 @@ PURPOSE OF PROJECT: Create an application that will display images and allow use
 DATE: 2011
 
 This was created as a project for my first ever programming class in Fall 2011, senior year of high school.
+
+Only works on Windows.
