@@ -1,0 +1,1 @@
+Created as a project for Data Structures, Spring 2015. Utilized Binary Trees in order to implement Huffman compression.

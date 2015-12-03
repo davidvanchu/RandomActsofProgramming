@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.params=original
+comment0.target=java.awt.image.BufferedImage\ resizeFullImage(java.awt.image.BufferedImage)
+comment1.params=originalImage\ newWidth\ newHeight\ type
+comment1.target=java.awt.image.BufferedImage\ resizeImage(java.awt.image.BufferedImage,\ int,\ int,\ int)
+comment2.params=images\ bufferImage\ g\ frame
+comment2.target=void\ checkEm(java.awt.image.BufferedImage[],\ java.awt.image.BufferedImage,\ java.awt.Graphics,\ Viewer)
+numComments=3

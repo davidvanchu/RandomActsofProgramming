@@ -1,0 +1,320 @@
+CREATE TABLE Customer (
+CustomerID 	INTEGER(5)	NOT NULL,
+fName		VARCHAR(20)	NOT NULL,
+lName		VARCHAR(20)	NOT NULL,
+Telephone	VARCHAR(14)		,
+Address		VARCHAR(20)		,
+City		VARCHAR(20)		,
+State		VARCHAR(2)		,
+Zip			VARCHAR(5)		,
+Email		VARCHAR(25),	
+CONSTRAINT L_Customers_PK
+		PRIMARY KEY (CustomerID)
+);
+
+CREATE TABLE Staff (
+StaffNo	INTEGER(5)	NOT NULL,
+fName		VARCHAR(20)	NOT NULL,
+lName		VARCHAR(20)	NOT NULL,
+Telephone	VARCHAR(14)		,
+Position	VARCHAR(10)		,
+Salary		INTEGER(7)		,
+EmployedDate Date,		
+CONSTRAINT Staff_PK
+		PRIMARY KEY(StaffNo)
+);
+
+INSERT INTO Customer VALUES (21110, "Anthony", "Miller", "989-848-2380", "351 Aviation Way", "Portland", "ME", 04101, "millera@gmail.com");
+INSERT INTO Customer VALUES (21111, "Teresa", "Chess", "708-246-2524", "93 Franklin Street", "Scarborough", "ME", 04074, "chesst@gmail.com");
+INSERT INTO Customer VALUES (21112, "Luis", "Thompson", "207-557-5225", "165 Timber Road", "Portland", "ME", 04102, "thompsonl@gmail.com");
+INSERT INTO Customer VALUES (21113, "Clyde", "White", "515-961-1552", "273 Stoney Lane", "Portland", "ME", 04102, "whitec@aol.com");
+INSERT INTO Customer VALUES (21114, "Terry", "Park", "254-945-6347", "439 Romano Street", "Scarborough", "ME", 04074, "parkt@yahoo.com");
+
+INSERT INTO Customer VALUES (21115, "Wilma", "Washington", "207-634-3284", "348 Copeland Street", "South Portland", "ME", 04106, "washingtonw@yahoo.com");
+INSERT INTO Customer VALUES (21116, "Eduardo", "Gilbert", "207-681-8103", "255 Hilltop Street", "Yarmouth", "ME", 04102, "gilberte@gmail.com");
+INSERT INTO Customer VALUES (21117, "Sandra", "Ryans", "502-928-9147", "452 Main Street", "Gorham", "ME", 04038, "ryanss9@wit.edu");
+INSERT INTO Customer VALUES (21118, "Norman", "Davis", "207-601-7337", "119 Heavner Avenue", "South Portland", "ME", 04106, "davisn@comcast.net");
+INSERT INTO Customer VALUES (21119, "Alice", "Barnes", "207-654-1102", "750 Fifth Street", "Yarmouth", "ME", 04102, "barnesa@gmail.com");
+
+INSERT INTO Customer VALUES (21120, "Cody", "Sanderson", "207-931-6515", "236 Huntington Ave", "Gorham", "ME", 04038, "sandersonc@yahoo.com");
+INSERT INTO Customer VALUES (21121, "Bradley", "Martin", "207-905-2157", "179 Freedom Lane", "Portland", "ME", 04102, "martinb@icloud.com");
+INSERT INTO Customer VALUES (21122, "Carol", "Hart", "207-886-9815", "3096 Poplar Avenue", "Portland", "ME", 04102, "hartc@icloud.com");
+INSERT INTO Customer VALUES (21123, "Christen", "Copeland", "716-329-6152", "625 Pineview Drive", "Scarborough", "ME", 04074, "copelandc@outlook.com");
+INSERT INTO Customer VALUES (21124, "Joseph", "Hill", "207-654-8519", "461 Stadium Drive", "Portland", "ME", 04102, "hillj@yahoo.com");
+
+INSERT INTO Customer VALUES (21125, "Steven", "Gonzales", "207-200-1336", "498 River Road", "South Portland", "ME", 04106, "gonzaless@outlook.com");
+INSERT INTO Customer VALUES (21126, "Terrence", "Golden", "617-679-3542", "333 D Street", "Yarmouth", "ME", 04102, "goldent@mit.edu");
+INSERT INTO Customer VALUES (21127, "Tom", "Burke", "412-802-8241", "344 Elm Street", "Gorham", "ME", 04038, "burket@bhcc.edu");
+INSERT INTO Customer VALUES (21128, "Andrew", "Jones", "207-663-2214", "902 Bagwell Avenue", "Portland", "ME", 04102, "jonesa@icloud.com");
+INSERT INTO Customer VALUES (21129, "Kevin", "Banks", "207-662-6023", "288 Pine lane", "Portland", "ME", 04102, "banksk@facebook.com");
+
+INSERT INTO Staff VALUES(91110, "Alvin", "Adams", "207-524-8579", "Mechanic", 18000, '2008-03-18');
+INSERT INTO Staff VALUES(91111, "Russ", "Johnson", "207-938-4544", "Manager", 21000, '1997-03-21');
+INSERT INTO Staff VALUES(91112, "Nolan", "Feldman", "207-828-9931", "Sales", 15000, '1999-07-07');
+INSERT INTO Staff VALUES(91113, "Michael", "Conner", "207-337-7082", "Sales", 16500, '2003-3-30');
+INSERT INTO Staff VALUES(91114, "Corey", "Kelley", "207-234-5748", "Mechanic", 18500, '1996-09-03');
+INSERT INTO Staff VALUES(91115, "David", "Reed", "207-341-7982", "Sales", 16000, '1998-01-22');
+INSERT INTO Staff VALUES(91116, "Jack", "White", "207-412-7321", "Manager", 21500, '1990-11-13');
+INSERT INTO Staff VALUES(91117, "Kevin", "Grant", "207-1345-8321", "Mechanic", 15500, '1980-04-28');
+
+
+create table Supplier (
+SupplierID		INTEGER(9)		NOT NULL,
+Name			VARCHAR(20)		NOT NULL,
+ContactName		VARCHAR(30)		NOT NULL,
+Telephone		VARCHAR(14)		,
+Address			VARCHAR(20)		,
+City			VARCHAR(20)		,
+State			VARCHAR(2)		,
+Zip				VARCHAR(5)		,
+Email			VARCHAR(50),
+LastOrdered 	DATE,
+Active 			INTEGER(1),
+CONSTRAINT Supplier_PK
+		PRIMARY KEY (SupplierID));
+
+create table Product (
+ProductID		INTEGER(9)		NOT NULL,
+ProductName		VARCHAR(20)		NOT NULL,
+ProductType		VARCHAR(20)		NOT NULL,
+Stock			INTEGER(4) 		NOT NULL,
+SupplierID		INTEGER(9),
+CostPrice		DECIMAL(7,2),
+SalePrice		DECIMAL(7,2),
+FirstReceived	DATE,
+LastReceived	DATE,
+CONSTRAINT Product_PK
+		PRIMARY KEY (ProductID),
+CONSTRAINT Product_Supplier_FK
+		FOREIGN KEY (SupplierID)
+		REFERENCES Supplier(SupplierID));
+
+create table Bicycle (
+SerialNumber	VARCHAR(15) NOT NULL,
+ProductID		INTEGER(9)	NOT NULL,
+AssembledBy		INTEGER(5),
+ApprovedBy 		INTEGER(5),
+Category 		VARCHAR(20),
+CONSTRAINT Bicycle_PK
+		PRIMARY KEY (SerialNumber),
+CONSTRAINT Bike_Product_FK
+		FOREIGN KEY (ProductID)
+		REFERENCES Product(ProductID));
+		
+create table Sale (
+SaleID		INTEGER(10) NOT NULL,
+SaleDate	DATE 		NOT NULL,
+CustomerID	INTEGER(5),
+StaffNo		INTEGER(5)	NOT NULL,
+CONSTRAINT Sale_PK
+		PRIMARY KEY (SaleID),
+CONSTRAINT Sale_Customer_FK
+		FOREIGN KEY (CustomerID)
+		REFERENCES Customer(CustomerID),
+CONSTRAINT Sale_Staff_FK
+		FOREIGN KEY (StaffNo)
+		REFERENCES Staff(StaffNo));
+		
+create table ItemsInSale (
+SaleID		Integer(10) NOT NULL,
+ProductID 	Integer(9)	NOT NULL,
+Qty			Integer(4) NOT NULL,
+SoldForPrice DECIMAL(7,2) NOT NULL,
+CONSTRAINT ItemsInSale_PK
+		PRIMARY KEY (SaleID, ProductID),
+CONSTRAINT Items_Sale_FK
+		FOREIGN KEY (SaleID)
+		REFERENCES Sale(SaleID),
+CONSTRAINT Items_Product_FK
+		FOREIGN KEY (ProductID)
+		REFERENCES Product(ProductID));
+		
+create table ReturnTransaction (
+SaleID		Integer(10) NOT NULL,
+ReturnDate	DATE 		NOT NULL,
+ReturnReason VARCHAR(100),
+CONSTRAINT Return_PK
+		PRIMARY KEY (SaleID),
+CONSTRAINT Return_Sale_FK
+		FOREIGN KEY (SaleID)
+		REFERENCES Sale(SaleID)
+);
+
+create table WorkOrder (
+SaleID				Integer(10) NOT NULL,
+BikeMakeModel		VARCHAR(50),
+Description 		VARCHAR(300), 
+Mechanic 			INTEGER(5),
+BeginDate			DATE,
+CompletionDate 		DATE,
+CONSTRAINT WorkOrder_PK
+	PRIMARY KEY (SaleID),
+CONSTRAINT WorkOrder_Sale_FK
+	FOREIGN KEY (SaleID)
+	REFERENCES Sale(SaleID),
+CONSTRAINT WorkOrder_Staff_FK
+	FOREIGN KEY (Mechanic)
+	REFERENCES Staff(StaffNo)
+);
+
+INSERT INTO Supplier VALUES (318417295, "QBP", "Tyler Knight", "1-800-346-0004", "6400 W. 105th Street", "Bloomington", "MN", "55438", "customerservice@qbp.com", '2015-03-27', 1);
+
+INSERT INTO Supplier VALUES (202762718, "Cannondale", "Jeffrey Underhill", "203-749-7000", "16 Trowbridge Drive", "Bethel", "CT", "06801", "jeffrey.underhill@cyclingsportsgroup.com", '2015-02-06', 1);
+
+INSERT INTO Supplier VALUES (291756179, "Trek", "Kevin Harrison", "207-555-2137", "801 West Madison St", "Waterloo", "WI", "53594", "kharrison@trek.com", '2015-03-14', 1);
+
+-- products
+
+INSERT INTO Product VALUES (000000001, "2014 Trek Madone 5.2", "bicycle", 4, 291756179, 1999.99, 3549.99, '2013-10-13', '2014-06-23');
+
+INSERT INTO Product VALUES (000000002, "2015 Trek Emonda SL 6", "bicycle", 2, 291756179, 1799.99, 3149.99, '2014-08-19', '2015-03-14');
+
+INSERT INTO Product VALUES (000000003, "2014 Trek Crockett 5 Disc", "bicycle", 1, 291756179, 1199.99, 2199.99, '2013-10-13', '2014-6-23');
+
+INSERT INTO Product VALUES (000000004, "2014 Trek Boone 5 Disc", "bicycle", 3, 291756179, 1999.99, 3549.99, '2013-10-13', '2013-10-13');
+
+INSERT INTO Product VALUES (000000005, "2014 Cannondale Quick 6", "bicycle", 14, 291756179, 249.99, 599.99, '2013-10-13', '2014-09-23');
+
+
+
+INSERT INTO Product VALUES (000001531, "Bontrager Flare R Rear Light", "lights", 20, 291756179, 14.99, 29.99, '2013-10-13', '2015-03-14');
+
+INSERT INTO Product VALUES (000001532, "Bontrager Ion 700 Front Light", "lights", 17, 291756179, 49.99, 99.99, '2014-08-13', '2015-03-14');
+
+INSERT INTO Product VALUES (000003172, "Thomson X2 Stem 100mm 17 Degree", "stem", 3, 318417295, 54.99, 99.99, '2014-05-02', '2014-05-02');
+
+
+
+INSERT INTO Product VALUES (00000317, "Thomson Elite Seatpost 27.2mm x 350mm", "seatpost", 4, 318417295, 54.99, 99.99, '2014-05-02', '2014-05-02');
+
+INSERT INTO Product VALUES (000007937, "Kryptonite Evolution Mini 4 U Lock", "lock", 9, 318417295, 19.99, 44.99, '2014-05-02', '2014-05-02');
+
+INSERT INTO Product VALUES (000007938, "Kryptonite Cable Lock", "lock", 14, 318417295, 3.99, 11.99, '2014-05-02', '2014-05-02');
+
+INSERT INTO Product VALUES (000001212, "QTubes 700x23-25mm Presta 48mm", "tube", 47, 318417295, 1.99, 6.99, '2014-05-02', '2014-05-02');
+
+INSERT INTO Product VALUES (000001213, "QTubes 26x1.9-2.3 Schrader 30mm", "lock", 87, 318417295, 1.99, 6.99, '2014-05-02', '2014-05-02');
+
+INSERT INTO Product VALUES (000021325, "Tune Up", "labor", 0, null, null, 50.00, null, null);
+INSERT INTO Product VALUES (000021300, "Flat Fix", "labor", 0, null, null, 6.00, null, null);
+INSERT INTO Product VALUES (000021326, "Super Duper Tune Up", "labor", 0, null, null, 150.00, null, null);
+
+
+INSERT INTO Product VALUES (000021327, "Shop Rate (Per Hour)", "labor", 0, null, null, 30.00, null, null);
+
+INSERT INTO Product VALUES (000021328, "Adjust Shifting", "labor", 0, null, null, 10.00, null, null);
+
+INSERT INTO Product VALUES (000021329, "Adjust Brakes", "labor", 0, null, null, 10.00, null, null);
+
+INSERT INTO Product VALUES (000021324, "Simple Tune (Fixed Gear/Single Speed/Kids Bikes)", "labor", 0, null, null, 35.00, null, null);
+
+INSERT INTO Product VALUES (000021330, "Install Cables/Housing", "labor", 0, null, null, 30.00, null, null);
+
+INSERT INTO Product VALUES (000021331, "Install Chain", "labor", 0, null, null, 10.00, null, null);
+
+INSERT INTO Product VALUES (000021332, "Install Cassette", "labor", 0, null, null, 10.00, null, null);
+
+INSERT INTO Product VALUES (000000006, "Cinelli Parallax Frameset", "bicycle", 3, null, 650.00, 950.00, '2014-03-14', '2014-8-07');
+
+-- "STARTER CODE" ABOVE, TYPE NEW CODE BELOW
+-- saleID, date, custID, staffID
+-- saleID, productID, qty, sold price
+
+INSERT INTO Sale VALUES (4,'1980-05-02',21111,91117);
+INSERT INTO ItemsInSale VALUES (4,21325,1,35.00);
+
+INSERT INTO Sale VALUES (17,'1980-08-09',21110,91117);
+INSERT INTO ItemsInSale VALUES (17,21325,1,3.00);
+
+
+INSERT INTO Sale VALUES (47,'1984-01-24',21114,91117);
+INSERT INTO ItemsInSale VALUES (47,21324,1,20.00);
+
+
+INSERT INTO Sale VALUES (2134,'2014-08-16',21120,91111);
+INSERT INTO ItemsInSale VALUES (2134,5,1,599.99);
+INSERT INTO ItemsInSale VALUES (2134,7937,1,44.99);
+
+INSERT INTO Sale VALUES (8764,'2015-03-16',21116,91112);
+INSERT INTO ItemsInSale VALUES (8764,6,1,950.00);
+INSERT INTO ItemsInSale VALUES (8764,3172,1,99.99);
+INSERT INTO ItemsInSale VALUES (8764,317,1,99.99);
+INSERT INTO ItemsInSale VALUES (8764,1212,2,6.99);
+
+INSERT INTO Sale VALUES (9864,'2014-07-29',21126,91113);
+INSERT INTO ItemsInSale VALUES (9864,1,1,3549.99);
+INSERT INTO ItemsInSale VALUES (9864,1212,4,6.99);
+
+INSERT INTO Sale VALUES (6532,'2014-03-24',21125,91115);
+INSERT INTO ItemsInSale VALUES (6532,3,1,2199.99);
+
+INSERT INTO Sale VALUES (476,'2014-05-05',21128,91110);
+INSERT INTO ItemsInSale VALUES (476,21326,1,150.00);
+INSERT INTO ItemsInSale VALUES (476,21331,1,10.00);
+INSERT INTO ItemsInSale VALUES (476,21332,1,10.00);
+
+
+INSERT INTO Sale VALUES (475,'2014-05-05',21124,91111);
+INSERT INTO ItemsInSale VALUES (475,21325,1,50.00);
+
+INSERT INTO Sale VALUES (401,'2014-05-04',21122,91113);
+INSERT INTO ItemsInSale VALUES (401,1531,1,29.99);
+INSERT INTO ItemsInSale VALUES (401,7938,1,11.99);
+
+-- ADD WORK ORDERS
+-- saleID, bike model, description, mechanic, begin, end
+INSERT INTO WorkOrder VALUES (4,"Trek road bike red", "Just a basic tune up, check shifting and brakes especially",91117,'1980-05-02','1980-05-02');
+
+INSERT INTO WorkOrder VALUES (17,"Trek road bike red", "Front flat fix, had own tube",91117,'1980-08-09','1980-08-09');
+
+INSERT INTO WorkOrder VALUES (47,"Bianchi Pista fixed gear", "simple tune, install supplied chain and cog",91117,'1984-01-24','1984-01-25');
+
+INSERT INTO WorkOrder VALUES (475,"Trek Madone blue/black", "doesn't need much just adjustment of shifting and brakes and check headset",91110,'2014-05-05','2014-05-06');
+
+INSERT INTO WorkOrder VALUES (476,"Cannondale SuperSix team colors", "Needs complete overhaul and new chain and cassette.",91114,'2014-05-05','2015-05-09');
+
+-- serial, productID, assembled by, approved by, category
+INSERT INTO Bicycle VALUES ("WTU99286S", 1, 91110, 91116, "Road/Aero");
+INSERT INTO Bicycle VALUES ("WTU99287S", 1, 91110, 91116, "Road/Aero");
+INSERT INTO Bicycle VALUES ("WTU99288S", 1, 91113, 91116, "Road/Aero");
+INSERT INTO Bicycle VALUES ("WTU91726C", 2, 91117, 91117, "Road/Light");
+INSERT INTO Bicycle VALUES ("WTU91727C", 2, 91117, 91117, "Road/Light");
+INSERT INTO Bicycle VALUES ("WTU17263C", 3, 91113, 91117, "Cyclocross");
+INSERT INTO Bicycle VALUES ("WTU17264C", 3, 91113, 91116, "Cyclocross");
+INSERT INTO Bicycle VALUES ("WTU71625C", 4, 91110, 91116, "Cyclocross");
+INSERT INTO Bicycle VALUES ("816471863", 5, 91110, 91116, "Hybrid");
+INSERT INTO Bicycle VALUES ("816471864", 5, 91110, 91116, "Hybrid");
+INSERT INTO Bicycle VALUES ("1459", 6, null, null, "Track");
+INSERT INTO Bicycle VALUES ("1460", 6, null, null, "Track");
+INSERT INTO Bicycle VALUES ("1461", 6, null, null, "Track");
+
+
+
+
+-- QUERIES
+-- SIMPLE
+
+-- get mechanics who work at the shop
+SELECT StaffNo, fName, lName
+FROM Staff
+WHERE Position = "Mechanic";
+
+-- email list for portland residents
+Select email
+FROM Customer
+WHERE city = "Portland";
+
+-- sales before the millennium
+SELECT *
+FROM Sale
+WHERE SaleDate < '2000-01-01';
+
+-- phone numbers of people with 207 area code
+SELECT *
+FROM Customer
+WHERE Telephone LIKE "%207%";
+
+-- customers involved in sale after 2015
+SELECT fName, lName
+FROM Customer c, Sale s
+Where c.CustomerID = s.CustomerID AND SaleDate > '2015-01-01'
