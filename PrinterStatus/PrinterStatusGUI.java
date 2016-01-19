@@ -83,7 +83,7 @@ public class PrinterStatusGUI {
 		};
 
 		ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
-		executor.scheduleAtFixedRate(helloRunnable, 0, 10, TimeUnit.SECONDS);
+		executor.scheduleAtFixedRate(helloRunnable, 0, 10, TimeUnit.MINUTES);
 	}
 	
 	protected static void sendEmailNowBoolean() {
